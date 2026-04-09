@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ratnesh Kumar Yadav — Advocate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:       #0a0a0a;
+  --black-2:     #111111;
+  --black-3:     #1a1a1a;
+  --gold:        #c9a84c;
+  --gold-light:  #e8c97d;
+  --gold-dim:    rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.25);
+  --white:       #f8f4ee;
+  --white-muted: #d4cfc8;
+  --text-body:   #b8b0a4;
+  --text-dim:    #7a746e;
+  --serif:       'Playfair Display', Georgia, serif;
+  --body:        'EB Garamond', Georgia, serif;
+  --ease:        0.35s cubic-bezier(0.4,0,0.2,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--text-body);
+  font-family: var(--body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: var(--gold-light); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black-2); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.fade-up { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+.fade-in { opacity: 0; animation: fadeIn 0.9s ease forwards; }
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}
+.d4{animation-delay:.55s}.d5{animation-delay:.7s}.d6{animation-delay:.85s}
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gold-border);
+  transition: padding var(--ease);
+}
+.nav-brand { font-family: var(--serif); font-size: 1rem; color: var(--gold); line-height: 1.2; }
+.nav-brand small {
+  display: block; font-family: var(--body); font-size: .6rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim);
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--body); font-size: .78rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--white-muted);
+}
+.nav-links a:hover { color: var(--gold); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--gold); transition: all var(--ease); }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-nav {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,10,10,0.98); z-index: 999;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-family: var(--serif); font-size: 1.6rem; color: var(--white); }
+.mobile-nav a:hover { color: var(--gold); }
+
+/* SHARED */
+.sw { width: 100%; padding: 5rem 1.5rem; }
+.si { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: .8rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.section-label::before {
+  content: ''; display: block; width: 28px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+h2 {
+  font-family: var(--serif); font-size: clamp(1.7rem,5vw,2.6rem);
+  color: var(--white); font-weight: 500; line-height: 1.2; margin-bottom: 1rem;
+}
+h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--gold-light); font-weight: 500; margin-bottom: .6rem; }
+p { margin-bottom: 1.1rem; }
+p:last-child { margin-bottom: 0; }
+.gold-line { width: 50px; height: 1px; background: var(--gold); margin: 1.2rem 0 2rem; }
+
+/* HERO */
+#home {
+  min-height: 100vh; display: flex; align-items: center;
+  position: relative; overflow: hidden; padding-top: 70px;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 40%, rgba(201,168,76,.07) 0%, transparent 65%),
+    linear-gradient(180deg,#0a0a0a 0%,#0f0f0a 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; width: 100%;
+  max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 4rem;
+}
+.hero-eyebrow {
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+h1.hero-name {
+  font-family: var(--serif); font-size: clamp(2.4rem,8vw,5rem);
+  font-weight: 600; line-height: 1.05; color: var(--white); margin-bottom: 1rem;
+}
+h1.hero-name em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+.hero-desig {
+  font-family: var(--body); font-size: clamp(.95rem,2.5vw,1.2rem);
+  color: var(--text-body); font-style: italic; margin-bottom: 1.8rem;
+}
+.hero-bio {
+  max-width: 540px; font-size: 1rem; color: var(--text-body); line-height: 1.85;
+  margin-bottom: 2.5rem; border-left: 2px solid var(--gold-border); padding-left: 1.2rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: .7rem;
+  padding: .85rem 2rem; border: 1px solid var(--gold); color: var(--gold);
+  font-family: var(--body); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  position: relative; overflow: hidden; transition: color var(--ease);
+}
+.hero-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); transform: translateX(-101%);
+  transition: transform var(--ease); z-index: 0;
+}
+.hero-cta span, .hero-cta svg { position: relative; z-index: 1; }
+.hero-cta:hover { color: var(--black); }
+.hero-cta:hover::before { transform: translateX(0); }
+.hero-cta svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.compliance-box {
+  margin-top: 2.5rem; padding: 1rem 1.2rem;
+  border: 1px solid var(--gold-border); background: var(--gold-dim);
+  display: flex; gap: .8rem; align-items: flex-start; max-width: 560px;
+}
+.compliance-box svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 4px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.compliance-box p { font-size: .72rem; color: var(--text-dim); line-height: 1.65; margin: 0; }
+.compliance-box strong { color: var(--gold); font-weight: 400; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.portrait-box {
+  background: var(--black-3); border: 1px solid var(--gold-border);
+  aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+}
+.portrait-placeholder { display: flex; flex-direction: column; align-items: center; gap: .8rem; }
+.portrait-placeholder svg { width: 48px; height: 48px; stroke: var(--gold-border); fill: none; stroke-width: 1; }
+.portrait-placeholder span { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); }
+.credentials { margin-top: 1.8rem; border-top: 1px solid rgba(201,168,76,.12); }
+.cred-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: .6rem 0; border-bottom: 1px solid rgba(201,168,76,.12); gap: 1rem;
+}
+.cred-row .lbl { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); flex-shrink: 0; }
+.cred-row .val { font-family: var(--serif); font-size: .88rem; color: var(--gold-light); text-align: right; }
+.edu-list { list-style: none; margin: 1.5rem 0 0; }
+.edu-list li { display: flex; gap: 1.2rem; padding: 1rem 0; border-bottom: 1px solid rgba(201,168,76,.1); }
+.edu-list li:first-child { border-top: 1px solid rgba(201,168,76,.1); }
+.edu-year { font-size: .75rem; color: var(--gold); min-width: 42px; margin-top: 3px; flex-shrink: 0; }
+.edu-detail strong { display: block; font-family: var(--serif); font-size: .95rem; color: var(--white); font-weight: 500; }
+.edu-detail span { font-size: .85rem; color: var(--text-dim); }
+
+/* PRACTICE */
+.practice-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--gold-border); margin-top: 2.5rem;
+}
+.pcard {
+  background: var(--black-2); padding: 2rem 1.6rem;
+  transition: background var(--ease); position: relative; overflow: hidden;
+}
+.pcard::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform var(--ease);
+}
+.pcard:hover { background: var(--black-3); }
+.pcard:hover::after { transform: scaleX(1); }
+.pnum { font-family: var(--serif); font-size: 1.8rem; color: var(--gold-border); margin-bottom: .8rem; line-height: 1; }
+.pcard h3 { font-size: 1rem; color: var(--white); margin-bottom: .6rem; }
+.pcard p { font-size: .88rem; color: var(--text-dim); line-height: 1.7; margin: 0; }
+
+/* ARTICLES */
+.art-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.acard {
+  background: var(--black-3); border: 1px solid var(--gold-border);
+  padding: 2rem 1.6rem; transition: border-color var(--ease), transform var(--ease);
+}
+.acard:hover { border-color: var(--gold); transform: translateY(-4px); }
+.atag { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+.acard h3 { font-size: 1.05rem; color: var(--white); margin-bottom: .8rem; line-height: 1.4; }
+.acard p { font-size: .88rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.2rem; }
+.rbtn {
+  font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); background: none; border: none; cursor: pointer;
+  font-family: var(--body); display: flex; align-items: center; gap: .4rem;
+  transition: gap var(--ease); padding: 0;
+}
+.rbtn:hover { gap: .9rem; }
+.rbtn::after { content: '→'; }
+
+/* MODAL */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.9); z-index: 2000;
+  align-items: flex-start; justify-content: center;
+  padding: 2rem 1rem; overflow-y: auto;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--black-2); border: 1px solid var(--gold-border);
+  width: 100%; max-width: 700px; padding: 2.5rem 2rem;
+  position: relative; margin: auto;
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: 1px solid var(--gold-border);
+  color: var(--gold); width: 34px; height: 34px;
+  cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--ease);
+}
+.modal-close:hover { background: var(--gold); color: var(--black); }
+.mtag { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+.modal-box h2 { font-size: clamp(1.3rem,4vw,1.7rem); margin-bottom: .3rem; }
+.mbody { font-size: .98rem; color: var(--text-body); line-height: 1.85; }
+.mbody p { margin-bottom: 1rem; }
+.mbody h4 { font-family: var(--serif); color: var(--gold-light); font-size: 1rem; margin: 1.3rem 0 .5rem; font-weight: 500; }
+.mnote {
+  margin-top: 2rem; padding: .9rem 1rem;
+  border: 1px solid var(--gold-border); background: var(--gold-dim);
+  font-size: .75rem; color: var(--text-dim); line-height: 1.65;
+}
+
+/* CONTACT */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; margin-top: 2.5rem; }
+.citems { display: flex; flex-direction: column; gap: 1.8rem; }
+.ci .lbl { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
+.ci .val { font-family: var(--serif); font-size: 1.05rem; color: var(--white); }
+.ci .val a { color: var(--white); }
+.ci .val a:hover { color: var(--gold); }
+.ci .sub { font-size: .82rem; color: var(--text-dim); margin-top: .2rem; }
+.mapph {
+  margin-top: 1.8rem; width: 100%; height: 160px;
+  background: var(--black-3); border: 1px solid var(--gold-border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .5rem; color: var(--text-dim); font-size: .75rem; letter-spacing: .08em;
+}
+.mapph svg { width: 26px; height: 26px; stroke: var(--gold-border); fill: none; stroke-width: 1.2; }
+.cform { display: flex; flex-direction: column; gap: 1rem; }
+.fg { display: flex; flex-direction: column; gap: .35rem; }
+.fg label { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
+.fg input, .fg select, .fg textarea {
+  background: var(--black-3); border: 1px solid rgba(201,168,76,.2);
+  color: var(--white); padding: .8rem 1rem;
+  font-family: var(--body); font-size: .95rem; outline: none; width: 100%;
+  transition: border-color var(--ease); -webkit-appearance: none; border-radius: 0;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--gold); }
+.fg select option { background: var(--black-3); }
+.fg textarea { min-height: 110px; resize: vertical; }
+.fnote { font-size: .75rem; color: var(--text-dim); line-height: 1.65; border-left: 2px solid var(--gold-border); padding-left: .9rem; }
+.fsub {
+  align-self: flex-start; display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 2rem; background: transparent; border: 1px solid var(--gold);
+  color: var(--gold); font-family: var(--body); font-size: .78rem;
+  letter-spacing: .14em; text-transform: uppercase; cursor: pointer;
+  position: relative; overflow: hidden; transition: color var(--ease);
+}
+.fsub::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); transform: translateX(-101%);
+  transition: transform var(--ease); z-index: 0;
+}
+.fsub span { position: relative; z-index: 1; }
+.fsub:hover { color: var(--black); }
+.fsub:hover::before { transform: translateX(0); }
+
+/* FOOTER */
+footer { background: var(--black-2); border-top: 1px solid var(--gold-border); padding: 4rem 1.5rem 2.5rem; }
+.fi { max-width: 1100px; margin: 0 auto; }
+.ftop { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(201,168,76,.1); }
+.fbrand h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--gold); font-weight: 500; margin-bottom: .2rem; }
+.fbrand small { font-size: .72rem; color: var(--text-dim); letter-spacing: .07em; display: block; margin-bottom: .8rem; }
+.fbrand p { font-size: .88rem; color: var(--text-dim); }
+.fcol h4 { font-family: var(--serif); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--white-muted); margin-bottom: 1rem; font-weight: 500; }
+.fcol ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.fcol a { font-size: .88rem; color: var(--text-dim); }
+.fcol a:hover { color: var(--gold); }
+.fcol li span { font-size: .85rem; color: var(--text-dim); line-height: 1.5; }
+.disc { margin-top: 2.5rem; padding: 1.8rem; border: 1px solid var(--gold-border); background: var(--gold-dim); }
+.disc h4 { font-family: var(--serif); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; font-weight: 500; }
+.disc p { font-size: .78rem; color: var(--text-dim); line-height: 1.75; margin-bottom: .6rem; }
+.disc p:last-child { margin: 0; }
+.fbot { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: space-between; font-size: .72rem; color: var(--text-dim); }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 1.5rem; right: 1.5rem;
+  background: var(--black-2); border: 1px solid var(--gold);
+  padding: .9rem 1.3rem; color: var(--gold-light); font-size: .85rem;
+  z-index: 3000; opacity: 0; transform: translateY(8px);
+  transition: all .4s ease; pointer-events: none; max-width: 280px;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .portrait-box { aspect-ratio: 16/9; max-height: 260px; }
+  .practice-grid { grid-template-columns: 1fr 1fr; }
+  .art-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .ftop { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  nav { padding: .85rem 1.2rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .sw { padding: 3.5rem 1.2rem; }
+  h1.hero-name { font-size: 2.2rem; }
+  .hero-content { padding: 2rem 1.2rem 3rem; }
+  .hero-bio { font-size: .95rem; }
+  .compliance-box { max-width: 100%; }
+  .portrait-box { aspect-ratio: 4/3; max-height: 220px; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .art-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .ftop { grid-template-columns: 1fr; gap: 2rem; }
+  .fbot { flex-direction: column; }
+  .modal-box { padding: 2rem 1.2rem; }
+  .disc { padding: 1.2rem; }
+  footer { padding: 3rem 1.2rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nb">
+  <div class="nav-brand">Ratnesh Kumar Yadav<small>Advocate</small></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice Areas</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mn">
+  <a href="#home"     onclick="closeNav()">Home</a>
+  <a href="#about"    onclick="closeNav()">About</a>
+  <a href="#practice" onclick="closeNav()">Practice Areas</a>
+  <a href="#articles" onclick="closeNav()">Articles</a>
+  <a href="#contact"  onclick="closeNav()">Contact</a>
+</div>
+
+<!-- HOME -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-in d1">Advocate · High Court</div>
+    <h1 class="hero-name fade-up d2">Ratnesh<br><em>Kumar Yadav</em></h1>
+    <p class="hero-desig fade-up d3">Practising in Criminal Law, Constitutional Law &amp; Civil Matters</p>
+    <p class="hero-bio fade-up d4">A committed legal professional with practice before the High Court and district courts, engaged in matters of criminal defence, constitutional rights, and civil litigation — with a focus on diligent representation grounded in statutory and judicial precedent.</p>
+    <a href="#contact" class="hero-cta fade-up d5">
+      <span>Contact Office</span>
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+    </a>
+    <div class="compliance-box fade-up d6">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+      <p><strong>Notice — Rule 36, Bar Council of India Rules, 1975 (as amended):</strong> This website is intended solely for informational purposes and does not constitute solicitation of work or advertisement of professional services.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about" class="sw" style="background:var(--black-2)">
+  <div class="si">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="portrait-box">
+          <div class="portrait-placeholder">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            <span>Photograph</span>
+          </div>
+        </div>
+        <div class="credentials">
+          <div class="cred-row"><span class="lbl">Enrollment No.</span><span class="val">— / BCI</span></div>
+          <div class="cred-row"><span class="lbl">Bar Council</span><span class="val">Bar Council of India</span></div>
+          <div class="cred-row"><span class="lbl">Courts</span><span class="val">High Court &amp; District</span></div>
+          <div class="cred-row"><span class="lbl">Contact</span><span class="val">+91 6390149557</span></div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="section-label">About</div>
+        <h2>Professional Biography</h2>
+        <div class="gold-line"></div>
+        <p>Ratnesh Kumar Yadav is an advocate enrolled with the Bar Council of India, practising before the High Court and subordinate courts. His areas of engagement encompass criminal law, constitutional matters, and civil litigation.</p>
+        <p>He has appeared in matters involving personal liberty, bail proceedings, criminal trials, writ petitions, and civil disputes. His approach is methodical, research-oriented, and guided by the procedural and substantive requirements of the law.</p>
+        <p>Committed to the traditions of the legal profession, Adv. Yadav maintains that the role of an advocate is to provide sound, lawful counsel in accordance with the Advocates Act, 1961, and standards prescribed by the Bar Council of India.</p>
+        <h3 style="margin-top:2rem">Education</h3>
+        <ul class="edu-list">
+          <li>
+            <span class="edu-year">LL.B.</span>
+            <div class="edu-detail"><strong>Bachelor of Laws</strong><span>Faculty of Law</span></div>
+          </li>
+          <li>
+            <span class="edu-year">B.A.</span>
+            <div class="edu-detail"><strong>Bachelor of Arts</strong><span>University of Allahabad</span></div>
+          </li>
+        </ul>
+        <h3 style="margin-top:1.8rem">Professional Memberships</h3>
+        <p style="font-size:.95rem">Member, Bar Council of India &nbsp;·&nbsp; Member, District Bar Association</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRACTICE -->
+<div id="practice" class="sw">
+  <div class="si">
+    <div class="section-label reveal">Practice Areas</div>
+    <h2 class="reveal" style="transition-delay:.1s">Areas of Legal Practice</h2>
+    <p class="reveal" style="max-width:580px;transition-delay:.15s;font-size:.98rem">The following categories represent matters in which this office is engaged. Descriptions are informational and do not constitute guarantees of outcome.</p>
+    <div class="practice-grid">
+      <div class="pcard reveal"><div class="pnum">01</div><h3>Criminal Law</h3><p>Representation under the Code of Criminal Procedure and IPC, including bail applications, trials, appeals, and revisions before competent courts.</p></div>
+      <div class="pcard reveal" style="transition-delay:.08s"><div class="pnum">02</div><h3>Constitutional Law</h3><p>Matters concerning fundamental rights, writs under Articles 32 and 226, and enforcement of constitutional guarantees before the High Court.</p></div>
+      <div class="pcard reveal" style="transition-delay:.16s"><div class="pnum">03</div><h3>Civil Litigation</h3><p>Civil suits, injunctions, declaratory reliefs, title disputes, partition proceedings, and appeals under the Code of Civil Procedure.</p></div>
+      <div class="pcard reveal"><div class="pnum">04</div><h3>Bail &amp; Anticipatory Bail</h3><p>Applications for regular and anticipatory bail before Magistrates, Sessions Courts, and the High Court, with reference to settled principles on personal liberty.</p></div>
+      <div class="pcard reveal" style="transition-delay:.08s"><div class="pnum">05</div><h3>Family &amp; Matrimonial</h3><p>Matters under the Hindu Marriage Act, Domestic Violence Act, and maintenance proceedings under Section 125 CrPC.</p></div>
+      <div class="pcard reveal" style="transition-delay:.16s"><div class="pnum">06</div><h3>Service &amp; Administrative</h3><p>Service matters, departmental inquiries, writ petitions against administrative orders, and challenges before competent tribunals.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<div id="articles" class="sw" style="background:var(--black-2)">
+  <div class="si">
+    <div class="section-label reveal">Legal Insights</div>
+    <h2 class="reveal" style="transition-delay:.1s">Educational Articles</h2>
+    <p class="reveal" style="max-width:580px;transition-delay:.15s;font-size:.98rem">The following articles are for general educational purposes only and do not constitute legal advice. Consult a qualified legal professional for specific matters.</p>
+    <div class="art-grid">
+      <div class="acard reveal">
+        <span class="atag">Criminal Law</span>
+        <h3>Understanding Bail under the Code of Criminal Procedure, 1973</h3>
+        <p>An overview of the statutory framework governing bail, the distinction between bailable and non-bailable offences, and judicial principles guiding courts.</p>
+        <button class="rbtn" onclick="openModal('m1')">Read Article</button>
+      </div>
+      <div class="acard reveal" style="transition-delay:.1s">
+        <span class="atag">Constitutional Law</span>
+        <h3>The Writ Jurisdiction of High Courts under Article 226</h3>
+        <p>An examination of the scope of writ jurisdiction under the Constitution of India and how courts have interpreted the reach of this power over time.</p>
+        <button class="rbtn" onclick="openModal('m2')">Read Article</button>
+      </div>
+      <div class="acard reveal" style="transition-delay:.2s">
+        <span class="atag">Civil Law</span>
+        <h3>Principles of Temporary Injunctions in Civil Courts</h3>
+        <p>A discussion of the three-pronged test — prima facie case, balance of convenience, and irreparable injury — as applied by Indian civil courts.</p>
+        <button class="rbtn" onclick="openModal('m3')">Read Article</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="m1" onclick="closeOuter(event,'m1')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('m1')">✕</button>
+    <div class="mtag">Criminal Law · Educational Article</div>
+    <h2>Understanding Bail under the CrPC, 1973</h2>
+    <div class="gold-line"></div>
+    <div class="mbody">
+      <p>Bail is a fundamental concept in criminal justice, premised on the presumption of innocence until proven guilty. The CrPC classifies offences into bailable and non-bailable categories.</p>
+      <h4>Bailable Offences</h4>
+      <p>Under Section 436, a person accused of a bailable offence is entitled to bail as a matter of right. The officer or court is bound to release such a person upon furnishing sureties or a personal bond.</p>
+      <h4>Non-Bailable Offences</h4>
+      <p>For non-bailable offences, Section 437 grants the Magistrate discretion to release an accused on bail, considering the nature of the offence, evidence, antecedents, and likelihood of flight or witness tampering.</p>
+      <h4>Anticipatory Bail</h4>
+      <p>Section 438 provides for anticipatory bail for persons apprehending arrest. The Supreme Court in Gurbaksh Singh Sibbia v. State of Punjab (1980) held it was not to be applied narrowly or restrictively.</p>
+      <h4>Bail and Article 21</h4>
+      <p>Courts have consistently held that bail must be considered in keeping with Article 21's guarantee of life and personal liberty, and that pre-trial detention is not to serve as pre-emptive punishment.</p>
+      <div class="mnote">This article is published for educational purposes only and does not constitute legal advice. Seek independent counsel for specific matters.</div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="m2" onclick="closeOuter(event,'m2')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('m2')">✕</button>
+    <div class="mtag">Constitutional Law · Educational Article</div>
+    <h2>Writ Jurisdiction of High Courts under Article 226</h2>
+    <div class="gold-line"></div>
+    <div class="mbody">
+      <p>Article 226 vests High Courts with broad power to issue writs for the enforcement of fundamental rights as well as for any other purpose — wider than the Supreme Court's jurisdiction under Article 32.</p>
+      <h4>Types of Writs</h4>
+      <p>The five principal writs are: Habeas Corpus (release from unlawful detention), Mandamus (compelling public duty), Prohibition (preventing inferior courts from exceeding jurisdiction), Certiorari (quashing orders without jurisdiction), and Quo Warranto (inquiring into assumption of public office).</p>
+      <h4>Scope and Discretion</h4>
+      <p>The jurisdiction is discretionary. A petitioner must approach with clean hands and ordinarily cannot be heard if alternative remedies have not been exhausted, unless the matter involves a flagrant violation of fundamental rights.</p>
+      <h4>Territorial Jurisdiction</h4>
+      <p>A High Court may exercise writ jurisdiction over persons within its territorial limits, or where the cause of action, even partly, arises within such territory.</p>
+      <div class="mnote">For educational purposes only. Consult a qualified advocate for specific constitutional matters.</div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="m3" onclick="closeOuter(event,'m3')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('m3')">✕</button>
+    <div class="mtag">Civil Law · Educational Article</div>
+    <h2>Principles of Temporary Injunctions in Civil Courts</h2>
+    <div class="gold-line"></div>
+    <div class="mbody">
+      <p>A temporary injunction directs a party to refrain from, or continue, a particular act pending the final disposal of a suit. The power is codified under Order XXXIX of the Code of Civil Procedure, 1908.</p>
+      <h4>The Three-Pronged Test</h4>
+      <p><strong>Prima Facie Case:</strong> The applicant must demonstrate an arguable question of law or fact. The court does not conduct a final assessment of merits at this stage.</p>
+      <p><strong>Balance of Convenience:</strong> The court weighs relative inconvenience. Where refusal causes greater hardship to the applicant than its grant causes to the respondent, the balance favours granting it.</p>
+      <p><strong>Irreparable Injury:</strong> The applicant must face harm not adequately compensated by damages alone. Readily quantifiable monetary loss may not justify injunctive relief.</p>
+      <h4>Suppression of Material Facts</h4>
+      <p>Suppression of material facts may disentitle a party from discretionary relief, regardless of the merits of the substantive claim.</p>
+      <div class="mnote">For general educational information only. Please consult a qualified advocate for specific civil matters.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="sw">
+  <div class="si">
+    <div class="section-label reveal">Contact</div>
+    <h2 class="reveal" style="transition-delay:.1s">Office Contact &amp; Enquiries</h2>
+    <p class="reveal" style="max-width:580px;transition-delay:.15s;font-size:.98rem">Enquiries may be directed to the office below. Submission of this form does not create an advocate-client relationship, and legal advice is not dispensed through this website.</p>
+    <div class="contact-grid">
+      <div class="citems reveal">
+        <div class="ci">
+          <div class="lbl">Mobile</div>
+          <div class="val"><a href="tel:+916390149557">+91 6390149557</a></div>
+          <div class="sub">Working days · 10:00 AM – 6:00 PM</div>
+        </div>
+        <div class="ci">
+          <div class="lbl">Email</div>
+          <div class="val"><a href="mailto:adv.ratneshyadav@example.com">adv.ratneshyadav@example.com</a></div>
+          <div class="sub">Responses within two working days</div>
+        </div>
+        <div class="ci">
+          <div class="lbl">Office Address</div>
+          <div class="val">Chamber No. —, High Court Compound</div>
+          <div class="sub">Prayagraj, Uttar Pradesh — 211001</div>
+        </div>
+        <div class="mapph">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          <span>Prayagraj, Uttar Pradesh</span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <form class="cform" onsubmit="submitForm(event)">
+          <div class="fg"><label>Full Name</label><input type="text" placeholder="Your full name" required></div>
+          <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+          <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com" required></div>
+          <div class="fg">
+            <label>General Nature of Matter</label>
+            <select>
+              <option value="">— Select a category —</option>
+              <option>Criminal Matter</option>
+              <option>Constitutional / Writ Matter</option>
+              <option>Civil Dispute</option>
+              <option>Family / Matrimonial</option>
+              <option>Service / Administrative</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="fg"><label>Brief Description (Optional)</label><textarea placeholder="A brief, general description (please do not include sensitive details)"></textarea></div>
+          <p class="fnote">Submission of this form does not constitute establishment of an advocate-client relationship. Do not submit privileged or confidential information through this channel.</p>
+          <button type="submit" class="fsub"><span>Submit Enquiry</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ftop">
+      <div class="fbrand">
+        <h3>Ratnesh Kumar Yadav</h3>
+        <small>Advocate · Bar Council of India</small>
+        <p>Practising criminal, constitutional, and civil matters before the High Court and subordinate courts in Uttar Pradesh.</p>
+      </div>
+      <div class="fcol">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#practice">Practice Areas</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+916390149557">+91 6390149557</a></li>
+          <li><a href="mailto:adv.ratneshyadav@example.com">adv.ratneshyadav@example.com</a></li>
+          <li><span>High Court Compound<br>Prayagraj, U.P. — 211001</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disc">
+      <h4>Legal Disclaimer &amp; Rule 36 Compliance Notice</h4>
+      <p>This website has been established in compliance with Rule 36 of the Bar Council of India Rules, 1975, as amended in 2008. It is intended solely to provide factual and informational content about the advocate's qualifications, areas of practice, and contact details.</p>
+      <p>Nothing contained on this website constitutes legal advice, creates an advocate-client relationship, or amounts to solicitation of work or advertisement of professional services. Articles published herein are for general educational purposes only.</p>
+      <p>Submission of any enquiry does not give rise to any professional obligation until a formal engagement is agreed upon in writing. No representation is made regarding outcomes in any matter. No guarantee, warranty, or assurance of any kind is expressed or implied.</p>
+    </div>
+    <div class="fbot">
+      <span>© 2025 Ratnesh Kumar Yadav, Advocate. All rights reserved.</span>
+      <span>Informational only · Rule 36 BCI Rules Compliant</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Enquiry submitted. The office will respond within two working days.</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nb').style.padding = window.scrollY > 50 ? '.7rem 1.2rem' : '';
+  });
+  function toggleNav() {
+    document.getElementById('mn').classList.toggle('open');
+    document.getElementById('ham').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mn').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeNav() {
+    document.getElementById('mn').classList.remove('open');
+    document.getElementById('ham').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  function closeOuter(e, id) { if (e.target === e.currentTarget) closeModal(id); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow = ''; });
+  });
+  function submitForm(e) {
+    e.preventDefault();
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    e.target.reset();
+    setTimeout(() => t.classList.remove('show'), 5000);
+  }
+</script>
+</body>
+</html>
